@@ -47,13 +47,13 @@ export default function HeroSection() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
-          <div className="retro-card p-6 bg-white/90 text-black">
-            <div className="text-3xl md:text-4xl font-bold">10+</div>
-            <div className="text-sm md:text-base">Plant Species</div>
+          <div className="retro-card p-6 bg-white/90">
+            <div className="text-3xl md:text-4xl font-bold text-black">10+</div>
+            <div className="text-sm md:text-base text-black">Plant Species</div>
           </div>
-          <div className="retro-card p-6 bg-white/90 text-black">
-            <div className="text-3xl md:text-4xl font-bold">100+</div>
-            <div className="text-sm md:text-base">Customers</div>
+          <div className="retro-card p-6 bg-white/90">
+            <div className="text-3xl md:text-4xl font-bold text-black">100+</div>
+            <div className="text-sm md:text-base text-black">Customers</div>
           </div>
         </div>
 
@@ -64,7 +64,7 @@ export default function HeroSection() {
               type="text"
               placeholder="What are you looking for?"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
               className="flex-1 px-4 py-3 bg-transparent text-black placeholder-gray-500 focus:outline-none"
             />
             <button className="p-3 bg-green-500 rounded hover:bg-green-600 transition-colors">
@@ -74,8 +74,8 @@ export default function HeroSection() {
         </div>
 
         {/* Welcome Message Box */}
-        <div className="retro-card p-4 bg-green-100 text-black max-w-xs mx-auto">
-          <p className="text-sm font-bold">
+        <div className="retro-card p-4 bg-white max-w-xs mx-auto">
+          <p className="text-sm font-bold text-black">
             Hey Mate!<br />
             Welcome to<br />
             GreenQuest!

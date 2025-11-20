@@ -74,10 +74,8 @@ export default function CartPage() {
             <p className="text-gray-400 mb-8">
               Start planting! Browse our collection and add some green to your life.
             </p>
-            <Link href="/products">
-              <button className="btn-primary">
-                Browse Products
-              </button>
+            <Link href="/products" className="btn-primary">
+              Browse Products
             </Link>
           </div>
         ) : (
@@ -170,10 +168,8 @@ export default function CartPage() {
                   Proceed to Checkout
                 </button>
                 
-                <Link href="/products">
-                  <button className="btn-secondary w-full">
-                    Continue Shopping
-                  </button>
+                <Link href="/products" className="btn-secondary w-full">
+                  Continue Shopping
                 </Link>
 
                 {/* Sprout Message */}

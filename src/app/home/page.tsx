@@ -1,22 +1,51 @@
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import HeroSection from './components/HeroSection';
-import ProductCard from './components/ProductCard';
-import { plants, categories } from './data/plants';
-import { Package, Truck, Headphones, Sprout } from 'lucide-react';
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import HeroSection from '../components/HeroSection';
+import ProductCard from '../components/ProductCard';
+import { plants, categories } from '../data/plants';
+import { Truck, Headphones, Sprout } from 'lucide-react';
 import Link from 'next/link';
-import AuthGate from './components/AuthGate';
 
 export default function HomePage() {
+  const router = useRouter();
+  const { data: session, status } = useSession();
   const bestSelling = plants.slice(0, 6);
 
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/');
+    }
+  }, [status, router]);
+
+  // Show loading while checking auth
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4 animate-bounce">🌱</div>
+          <p className="text-white text-xl">Loading GreenQuest...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated
+  if (!session) {
+    return null;
+  }
+
   return (
-    <AuthGate>
-      <div className="min-h-screen bg-black">
-        <Navbar />
-        
-        {/* Hero Section */}
-        <HeroSection />
+    <div className="min-h-screen bg-black">
+      <Navbar />
+      
+      {/* Hero Section */}
+      <HeroSection />
 
       {/* Best Selling Trees Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -46,8 +75,10 @@ export default function HomePage() {
 
         {/* See More Button */}
         <div className="flex justify-center">
-          <Link href="/products" className="btn-secondary">
-            See more →
+          <Link href="/products">
+            <button className="btn-secondary">
+              See more →
+            </button>
           </Link>
         </div>
       </section>
@@ -208,8 +239,7 @@ export default function HomePage() {
         </div>
       </section>
 
-        <Footer />
-      </div>
-    </AuthGate>
+      <Footer />
+    </div>
   );
 }

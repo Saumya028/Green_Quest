@@ -72,7 +72,7 @@ export default function ProductsPage() {
                       min="0"
                       max="1000"
                       value={priceRange[1]}
-                      onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPriceRange([priceRange[0], Number(e.target.value)])}
                       className="w-full accent-green-500"
                     />
                     <div className="flex justify-between text-sm text-gray-400 mt-2">
